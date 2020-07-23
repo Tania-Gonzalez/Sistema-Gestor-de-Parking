@@ -1,0 +1,1468 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="parking_dbModel.Store" Provider="MySql.Data.MySqlClient" ProviderManifestToken="8.0" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="areas_personal">
+          <Key>
+            <PropertyRef Name="ID_AreaPersonal" />
+          </Key>
+          <Property Name="ID_AreaPersonal" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="AreaPersonal" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="banco_parking">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Folio" Type="varchar" MaxLength="20" />
+          <Property Name="FechaEntrada" Type="date" />
+          <Property Name="HoraEntrada" Type="time" Precision="0" />
+          <Property Name="ExpedidoPor" Type="varchar" MaxLength="50" />
+          <Property Name="Placa" Type="varchar" MaxLength="50" />
+          <Property Name="Marca" Type="varchar" MaxLength="50" />
+          <Property Name="Color" Type="varchar" MaxLength="50" />
+          <Property Name="ID_PensionU" Type="int" Nullable="false" />
+          <Property Name="ID_Cobro" Type="int" Nullable="false" />
+          <Property Name="ID_ServicioAd" Type="int" Nullable="false" />
+          <Property Name="ID_Penalizacion" Type="int" Nullable="false" />
+          <Property Name="FechaSalida" Type="date" />
+          <Property Name="HoraSalida" Type="time" Precision="0" />
+          <Property Name="CobradoPor" Type="varchar" MaxLength="50" />
+          <Property Name="T_Parqueo" Type="time" Precision="0" />
+          <Property Name="Estancia" Type="varchar" MaxLength="100" />
+          <Property Name="Importe" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="Pago" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="ModoCobro" Type="varchar" MaxLength="50" />
+          <Property Name="ModoTicket" Type="varchar" MaxLength="50" />
+          <Property Name="Justificacion" Type="varchar" MaxLength="500" />
+          <Property Name="Corte" Type="int" />
+          <Property Name="Semana" Type="int" />
+          <Property Name="Mes" Type="int" />
+          <Property Name="Id_corte" Type="int" />
+        </EntityType>
+        <EntityType Name="banco_pension">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Folio" Type="varchar" MaxLength="20" />
+          <Property Name="FechaInscripcion" Type="date" />
+          <Property Name="FechaUltimoPago" Type="date" />
+          <Property Name="CobradoPor" Type="varchar" MaxLength="50" />
+          <Property Name="Inicio_Pension" Type="date" />
+          <Property Name="Fin_Pension" Type="date" />
+          <Property Name="ID_Tipo_Pension" Type="int" Nullable="false" />
+          <Property Name="StatusPago" Type="bit" />
+          <Property Name="No_PagosAnticipados" Type="int" />
+          <Property Name="Costo" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="Pagos" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="Id_cliente" Type="int" />
+          <Property Name="Pension_Corte" Type="bit" />
+          <Property Name="Pension_Activa" Type="bit" />
+          <Property Name="Id_corte" Type="int" />
+        </EntityType>
+        <EntityType Name="bitacora_pensiones">
+          <Key>
+            <PropertyRef Name="Id_bitacora" />
+          </Key>
+          <Property Name="Id_bitacora" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Fecha_Entrada" Type="date" Nullable="false" />
+          <Property Name="Fecha_salida" Type="date" />
+          <Property Name="Hora_Entrada" Type="time" Precision="0" Nullable="false" />
+          <Property Name="Hora_Salida" Type="time" Precision="0" />
+          <Property Name="Tiempo_Exedido" Type="time" Precision="0" />
+          <Property Name="Penalizacion" Type="bool" Nullable="false" />
+          <Property Name="Monto_Penalizacion" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="Id_Pension" Type="int" />
+        </EntityType>
+        <EntityType Name="cliente">
+          <Key>
+            <PropertyRef Name="Id_cliente" />
+          </Key>
+          <Property Name="Id_cliente" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Apellido_paterno" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Apellido_materno" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Tel1" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="Tel2" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="Direccion" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="Correo" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="RFC" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="Razon_Social" Type="varchar" MaxLength="100" />
+          <Property Name="Id_Vehiculo" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="cobro">
+          <Key>
+            <PropertyRef Name="ID_Tabulador" />
+          </Key>
+          <Property Name="ID_Tabulador" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="100" />
+          <Property Name="Tarifa_Habilitada" Type="bit" />
+          <Property Name="FormaCobro" Type="bit" />
+          <Property Name="TipoCobro" Type="bit" />
+          <Property Name="CobroLineal_ImporteDefault" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="CobroLineal_minDefault" Type="int" />
+          <Property Name="CobroLineal_Importe" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="CobroLineal_minFrecuencia" Type="int" />
+          <Property Name="min_30" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="min_60" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="min_90" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="min_120" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="min_150" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="min_180" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="min_210" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="min_240" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="min_270" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="min_300" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="min_330" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="min_360" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="min_390" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="min_420" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="min_450" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="min_480" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="min_510" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="min_540" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="min_570" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="min_600" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="min_630" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="min_660" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="min_690" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="min_720" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="min_750" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="min_780" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="min_810" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="min_840" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="min_870" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="min_900" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="min_930" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="min_960" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="min_990" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="min_1020" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="min_1050" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="min_1080" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="min_1110" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="min_1140" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="min_1170" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="min_1200" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="min_1230" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="min_1260" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="min_1290" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="min_1320" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="min_1350" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="min_1380" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="min_1410" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="min_1440" Type="decimal" Precision="10" Scale="2" />
+        </EntityType>
+        <EntityType Name="config_tickets">
+          <Key>
+            <PropertyRef Name="ID_ticket" />
+          </Key>
+          <Property Name="ID_ticket" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Incluir_Logo" Type="bit" />
+          <Property Name="Tamaño_papel" Type="bit" />
+          <Property Name="Estacionamiento" Type="varchar" MaxLength="200" />
+          <Property Name="Direccion" Type="varchar" MaxLength="200" />
+          <Property Name="Razon_Social" Type="varchar" MaxLength="100" />
+          <Property Name="Telefono" Type="varchar" MaxLength="10" />
+          <Property Name="RFC" Type="varchar" MaxLength="20" />
+          <Property Name="DatosEntrada" Type="text" />
+          <Property Name="DatosSalida" Type="text" />
+          <Property Name="DatosPerdido" Type="text" />
+          <Property Name="DatosCortesia" Type="text" />
+          <Property Name="DatosConvenio" Type="text" />
+          <Property Name="DatosCancelado" Type="text" />
+          <Property Name="DatosPension" Type="text" />
+          <Property Name="Imagen" Type="longblob" />
+          <Property Name="Cantidad_Copias_Entrada" Type="int" Nullable="false" />
+          <Property Name="Cantidad_Copias_Salida" Type="int" Nullable="false" />
+          <Property Name="Desarrollador" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="configgen1">
+          <Key>
+            <PropertyRef Name="ID_config" />
+          </Key>
+          <Property Name="ID_config" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PeriodoCobro" Type="bit" Nullable="false" />
+          <Property Name="Tolerancia_ingreso" Type="int" Nullable="false" />
+          <Property Name="Tolerancia_proxtarifa" Type="int" Nullable="false" />
+          <Property Name="Ticket_cancel" Type="bit" Nullable="false" />
+          <Property Name="TCancel" Type="int" Nullable="false" />
+          <Property Name="Ticket_cortesia" Type="bit" Nullable="false" />
+          <Property Name="Tcortesia" Type="int" Nullable="false" />
+          <Property Name="Ticker_perdido" Type="bit" Nullable="false" />
+          <Property Name="Tperdido" Type="int" Nullable="false" />
+          <Property Name="Multa" Type="int" Nullable="false" />
+          <Property Name="Capacidad" Type="int" Nullable="false" />
+          <Property Name="Buscar_vehiculo" Type="bit" Nullable="false" />
+          <Property Name="Modo_cobro" Type="bit" Nullable="false" />
+          <Property Name="Limpiar" Type="int" Nullable="false" />
+          <Property Name="DireccionFactura" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="cortes">
+          <Key>
+            <PropertyRef Name="Id_Corte" />
+          </Key>
+          <Property Name="Id_Corte" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Usuario" Type="varchar" MaxLength="100" />
+          <Property Name="FechaCorte" Type="date" />
+          <Property Name="Importe_Parqueo" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="Importe_Cortes" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="Importe_Reportado" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="StatusCorte" Type="bit" />
+          <Property Name="CorteNormal" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="CorteTarifa2" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="CortePension" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="CortePenalizacion" Type="decimal" Precision="10" Scale="2" />
+        </EntityType>
+        <EntityType Name="email">
+          <Key>
+            <PropertyRef Name="ID_Email" />
+          </Key>
+          <Property Name="ID_Email" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Direccion_Email" Type="varchar" MaxLength="150" />
+          <Property Name="Password" Type="varchar" MaxLength="150" />
+          <Property Name="Asunto" Type="varchar" MaxLength="150" />
+          <Property Name="Cuerpo" Type="varchar" MaxLength="2000" />
+          <Property Name="Url_Encabezado" Type="longblob" />
+          <Property Name="Nombre" Type="varchar" MaxLength="800" />
+          <Property Name="Direccion" Type="varchar" MaxLength="500" />
+          <Property Name="Correo" Type="varchar" MaxLength="800" />
+          <Property Name="Telefono" Type="varchar" MaxLength="10" />
+          <Property Name="WebSite" Type="varchar" MaxLength="800" />
+          <Property Name="ID_ProveedoresCorreo" Type="int" />
+        </EntityType>
+        <EntityType Name="penalizaciones">
+          <Key>
+            <PropertyRef Name="ID_Penalizacion" />
+          </Key>
+          <Property Name="ID_Penalizacion" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Penalizacion" Type="varchar" MaxLength="100" />
+          <Property Name="Penalizacion_Activa" Type="bit" />
+          <Property Name="Precio_Penalizacion" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="Penalizacion_Tolerancia" Type="int" />
+        </EntityType>
+        <EntityType Name="pensiones">
+          <Key>
+            <PropertyRef Name="ID_Tipo_Pension" />
+          </Key>
+          <Property Name="ID_Tipo_Pension" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Pensn_Tipo" Type="varchar" MaxLength="100" />
+          <Property Name="Pens_Bonificacion" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="Pens_Costo_Regular" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="Pens_Tolerancia_dias" Type="int" />
+          <Property Name="Pens_Recargos" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="Pens_Cobro_1" Type="int" />
+          <Property Name="Pens_Cobro_2" Type="int" />
+          <Property Name="Pens_DiasInactivo" Type="int" />
+        </EntityType>
+        <EntityType Name="pensiones_unicas">
+          <Key>
+            <PropertyRef Name="ID_PensionU" />
+          </Key>
+          <Property Name="ID_PensionU" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre_PensionU" Type="varchar" MaxLength="100" />
+          <Property Name="ID_Tipo_PensionU" Type="int" Nullable="false" />
+          <Property Name="PensionU_Activa" Type="bit" />
+          <Property Name="Precio_PensionU" Type="decimal" Precision="10" Scale="2" />
+        </EntityType>
+        <EntityType Name="proveedorescorreo">
+          <Key>
+            <PropertyRef Name="ID_ProveedoresCorreo" />
+          </Key>
+          <Property Name="ID_ProveedoresCorreo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Dominio" Type="varchar" MaxLength="50" />
+          <Property Name="Servidor_SMTP" Type="varchar" MaxLength="200" />
+          <Property Name="Puerto" Type="int" />
+        </EntityType>
+        <EntityType Name="serviciosadicionales">
+          <Key>
+            <PropertyRef Name="ID_ServicioAd" />
+          </Key>
+          <Property Name="ID_ServicioAd" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ServicioAdicional" Type="varchar" MaxLength="100" />
+          <Property Name="ServicioAd_Activo" Type="bit" />
+          <Property Name="Precio_ServiciosAd" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="Tiempo_Gracia" Type="int" />
+        </EntityType>
+        <EntityType Name="tipos_pensionesu">
+          <Key>
+            <PropertyRef Name="ID_Tipo_PensionU" />
+          </Key>
+          <Property Name="ID_Tipo_PensionU" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Tipo_PensionU" Type="varchar" MaxLength="100" />
+          <Property Name="HoraInicio" Type="time" Precision="0" />
+          <Property Name="HoraFin" Type="time" Precision="0" />
+          <Property Name="Tolerancia_IN" Type="int" />
+          <Property Name="Tolerancia_OUT" Type="int" />
+        </EntityType>
+        <EntityType Name="usuario">
+          <Key>
+            <PropertyRef Name="ID_Usuario" />
+          </Key>
+          <Property Name="ID_Usuario" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Privilegios" Type="varchar" MaxLength="50" />
+          <Property Name="Usuario" Type="varchar" MaxLength="500" />
+          <Property Name="Password" Type="varchar" MaxLength="500" />
+          <Property Name="Nombre" Type="varchar" MaxLength="100" />
+          <Property Name="Telefono" Type="varchar" MaxLength="50" />
+          <Property Name="ID_AreaPersonal" Type="int" Nullable="false" />
+          <Property Name="Puesto" Type="varchar" MaxLength="100" />
+          <Property Name="mail_Correo" Type="varchar" MaxLength="100" />
+          <Property Name="mail_Password" Type="varchar" MaxLength="100" />
+          <Property Name="ID_ProveedoresCorreo" Type="int" />
+          <Property Name="CorreoConfirmado" Type="bit" />
+        </EntityType>
+        <EntityType Name="vehiculo">
+          <Key>
+            <PropertyRef Name="Id_Vehiculo" />
+          </Key>
+          <Property Name="Id_Vehiculo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Marca" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="Placa" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="Color" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="Descripcion" Type="varchar" MaxLength="200" />
+        </EntityType>
+        <Association Name="banco_parking_ibfk_1">
+          <End Role="pensiones_unicas" Type="Self.pensiones_unicas" Multiplicity="1" />
+          <End Role="banco_parking" Type="Self.banco_parking" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="pensiones_unicas">
+              <PropertyRef Name="ID_PensionU" />
+            </Principal>
+            <Dependent Role="banco_parking">
+              <PropertyRef Name="ID_PensionU" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="banco_parking_ibfk_2">
+          <End Role="cobro" Type="Self.cobro" Multiplicity="1" />
+          <End Role="banco_parking" Type="Self.banco_parking" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="cobro">
+              <PropertyRef Name="ID_Tabulador" />
+            </Principal>
+            <Dependent Role="banco_parking">
+              <PropertyRef Name="ID_Cobro" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="banco_parking_ibfk_3">
+          <End Role="serviciosadicionales" Type="Self.serviciosadicionales" Multiplicity="1" />
+          <End Role="banco_parking" Type="Self.banco_parking" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="serviciosadicionales">
+              <PropertyRef Name="ID_ServicioAd" />
+            </Principal>
+            <Dependent Role="banco_parking">
+              <PropertyRef Name="ID_ServicioAd" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="banco_parking_ibfk_4">
+          <End Role="penalizaciones" Type="Self.penalizaciones" Multiplicity="1" />
+          <End Role="banco_parking" Type="Self.banco_parking" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="penalizaciones">
+              <PropertyRef Name="ID_Penalizacion" />
+            </Principal>
+            <Dependent Role="banco_parking">
+              <PropertyRef Name="ID_Penalizacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="banco_parking_ibfk_5">
+          <End Role="cortes" Type="Self.cortes" Multiplicity="0..1" />
+          <End Role="banco_parking" Type="Self.banco_parking" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="cortes">
+              <PropertyRef Name="Id_Corte" />
+            </Principal>
+            <Dependent Role="banco_parking">
+              <PropertyRef Name="Id_corte" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="banco_pension_ibfk_1">
+          <End Role="pensiones" Type="Self.pensiones" Multiplicity="1" />
+          <End Role="banco_pension" Type="Self.banco_pension" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="pensiones">
+              <PropertyRef Name="ID_Tipo_Pension" />
+            </Principal>
+            <Dependent Role="banco_pension">
+              <PropertyRef Name="ID_Tipo_Pension" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="bitacora_pensiones_ibfk_1">
+          <End Role="banco_pension" Type="Self.banco_pension" Multiplicity="0..1" />
+          <End Role="bitacora_pensiones" Type="Self.bitacora_pensiones" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="banco_pension">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="bitacora_pensiones">
+              <PropertyRef Name="Id_Pension" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="cliente_ibfk_1">
+          <End Role="vehiculo" Type="Self.vehiculo" Multiplicity="1" />
+          <End Role="cliente" Type="Self.cliente" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="vehiculo">
+              <PropertyRef Name="Id_Vehiculo" />
+            </Principal>
+            <Dependent Role="cliente">
+              <PropertyRef Name="Id_Vehiculo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="email_ibfk_1">
+          <End Role="proveedorescorreo" Type="Self.proveedorescorreo" Multiplicity="0..1" />
+          <End Role="email" Type="Self.email" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="proveedorescorreo">
+              <PropertyRef Name="ID_ProveedoresCorreo" />
+            </Principal>
+            <Dependent Role="email">
+              <PropertyRef Name="ID_ProveedoresCorreo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="pensiones_unicas_ibfk_1">
+          <End Role="tipos_pensionesu" Type="Self.tipos_pensionesu" Multiplicity="1" />
+          <End Role="pensiones_unicas" Type="Self.pensiones_unicas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tipos_pensionesu">
+              <PropertyRef Name="ID_Tipo_PensionU" />
+            </Principal>
+            <Dependent Role="pensiones_unicas">
+              <PropertyRef Name="ID_Tipo_PensionU" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="usuario_ibfk_1">
+          <End Role="areas_personal" Type="Self.areas_personal" Multiplicity="1" />
+          <End Role="usuario" Type="Self.usuario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="areas_personal">
+              <PropertyRef Name="ID_AreaPersonal" />
+            </Principal>
+            <Dependent Role="usuario">
+              <PropertyRef Name="ID_AreaPersonal" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="usuario_ibfk_2">
+          <End Role="proveedorescorreo" Type="Self.proveedorescorreo" Multiplicity="0..1" />
+          <End Role="usuario" Type="Self.usuario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="proveedorescorreo">
+              <PropertyRef Name="ID_ProveedoresCorreo" />
+            </Principal>
+            <Dependent Role="usuario">
+              <PropertyRef Name="ID_ProveedoresCorreo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="parking_dbModelStoreContainer">
+          <EntitySet Name="areas_personal" EntityType="Self.areas_personal" Schema="parking_db" store:Type="Tables" />
+          <EntitySet Name="banco_parking" EntityType="Self.banco_parking" Schema="parking_db" store:Type="Tables" />
+          <EntitySet Name="banco_pension" EntityType="Self.banco_pension" Schema="parking_db" store:Type="Tables" />
+          <EntitySet Name="bitacora_pensiones" EntityType="Self.bitacora_pensiones" Schema="parking_db" store:Type="Tables" />
+          <EntitySet Name="cliente" EntityType="Self.cliente" Schema="parking_db" store:Type="Tables" />
+          <EntitySet Name="cobro" EntityType="Self.cobro" Schema="parking_db" store:Type="Tables" />
+          <EntitySet Name="config_tickets" EntityType="Self.config_tickets" Schema="parking_db" store:Type="Tables" />
+          <EntitySet Name="configgen1" EntityType="Self.configgen1" Schema="parking_db" store:Type="Tables" />
+          <EntitySet Name="cortes" EntityType="Self.cortes" Schema="parking_db" store:Type="Tables" />
+          <EntitySet Name="email" EntityType="Self.email" Schema="parking_db" store:Type="Tables" />
+          <EntitySet Name="penalizaciones" EntityType="Self.penalizaciones" Schema="parking_db" store:Type="Tables" />
+          <EntitySet Name="pensiones" EntityType="Self.pensiones" Schema="parking_db" store:Type="Tables" />
+          <EntitySet Name="pensiones_unicas" EntityType="Self.pensiones_unicas" Schema="parking_db" store:Type="Tables" />
+          <EntitySet Name="proveedorescorreo" EntityType="Self.proveedorescorreo" Schema="parking_db" store:Type="Tables" />
+          <EntitySet Name="serviciosadicionales" EntityType="Self.serviciosadicionales" Schema="parking_db" store:Type="Tables" />
+          <EntitySet Name="tipos_pensionesu" EntityType="Self.tipos_pensionesu" Schema="parking_db" store:Type="Tables" />
+          <EntitySet Name="usuario" EntityType="Self.usuario" Schema="parking_db" store:Type="Tables" />
+          <EntitySet Name="vehiculo" EntityType="Self.vehiculo" Schema="parking_db" store:Type="Tables" />
+          <AssociationSet Name="banco_parking_ibfk_1" Association="Self.banco_parking_ibfk_1">
+            <End Role="pensiones_unicas" EntitySet="pensiones_unicas" />
+            <End Role="banco_parking" EntitySet="banco_parking" />
+          </AssociationSet>
+          <AssociationSet Name="banco_parking_ibfk_2" Association="Self.banco_parking_ibfk_2">
+            <End Role="cobro" EntitySet="cobro" />
+            <End Role="banco_parking" EntitySet="banco_parking" />
+          </AssociationSet>
+          <AssociationSet Name="banco_parking_ibfk_3" Association="Self.banco_parking_ibfk_3">
+            <End Role="serviciosadicionales" EntitySet="serviciosadicionales" />
+            <End Role="banco_parking" EntitySet="banco_parking" />
+          </AssociationSet>
+          <AssociationSet Name="banco_parking_ibfk_4" Association="Self.banco_parking_ibfk_4">
+            <End Role="penalizaciones" EntitySet="penalizaciones" />
+            <End Role="banco_parking" EntitySet="banco_parking" />
+          </AssociationSet>
+          <AssociationSet Name="banco_parking_ibfk_5" Association="Self.banco_parking_ibfk_5">
+            <End Role="cortes" EntitySet="cortes" />
+            <End Role="banco_parking" EntitySet="banco_parking" />
+          </AssociationSet>
+          <AssociationSet Name="banco_pension_ibfk_1" Association="Self.banco_pension_ibfk_1">
+            <End Role="pensiones" EntitySet="pensiones" />
+            <End Role="banco_pension" EntitySet="banco_pension" />
+          </AssociationSet>
+          <AssociationSet Name="bitacora_pensiones_ibfk_1" Association="Self.bitacora_pensiones_ibfk_1">
+            <End Role="banco_pension" EntitySet="banco_pension" />
+            <End Role="bitacora_pensiones" EntitySet="bitacora_pensiones" />
+          </AssociationSet>
+          <AssociationSet Name="cliente_ibfk_1" Association="Self.cliente_ibfk_1">
+            <End Role="vehiculo" EntitySet="vehiculo" />
+            <End Role="cliente" EntitySet="cliente" />
+          </AssociationSet>
+          <AssociationSet Name="email_ibfk_1" Association="Self.email_ibfk_1">
+            <End Role="proveedorescorreo" EntitySet="proveedorescorreo" />
+            <End Role="email" EntitySet="email" />
+          </AssociationSet>
+          <AssociationSet Name="pensiones_unicas_ibfk_1" Association="Self.pensiones_unicas_ibfk_1">
+            <End Role="tipos_pensionesu" EntitySet="tipos_pensionesu" />
+            <End Role="pensiones_unicas" EntitySet="pensiones_unicas" />
+          </AssociationSet>
+          <AssociationSet Name="usuario_ibfk_1" Association="Self.usuario_ibfk_1">
+            <End Role="areas_personal" EntitySet="areas_personal" />
+            <End Role="usuario" EntitySet="usuario" />
+          </AssociationSet>
+          <AssociationSet Name="usuario_ibfk_2" Association="Self.usuario_ibfk_2">
+            <End Role="proveedorescorreo" EntitySet="proveedorescorreo" />
+            <End Role="usuario" EntitySet="usuario" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="parking_dbModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="areas_personal">
+          <Key>
+            <PropertyRef Name="ID_AreaPersonal" />
+          </Key>
+          <Property Name="ID_AreaPersonal" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AreaPersonal" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="usuario" Relationship="Self.usuario_ibfk_1" FromRole="areas_personal" ToRole="usuario" />
+        </EntityType>
+        <EntityType Name="banco_parking">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Folio" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="FechaEntrada" Type="DateTime" />
+          <Property Name="HoraEntrada" Type="Time" />
+          <Property Name="ExpedidoPor" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Placa" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Marca" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Color" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ID_PensionU" Type="Int32" Nullable="false" />
+          <Property Name="ID_Cobro" Type="Int32" Nullable="false" />
+          <Property Name="ID_ServicioAd" Type="Int32" Nullable="false" />
+          <Property Name="ID_Penalizacion" Type="Int32" Nullable="false" />
+          <Property Name="FechaSalida" Type="DateTime" />
+          <Property Name="HoraSalida" Type="Time" />
+          <Property Name="CobradoPor" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="T_Parqueo" Type="Time" />
+          <Property Name="Estancia" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Importe" Type="Decimal" />
+          <Property Name="Pago" Type="Decimal" />
+          <Property Name="ModoCobro" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ModoTicket" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Justificacion" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="Corte" Type="Int32" />
+          <Property Name="Semana" Type="Int32" />
+          <Property Name="Mes" Type="Int32" />
+          <Property Name="Id_corte" Type="Int32" />
+          <NavigationProperty Name="pensiones_unicas" Relationship="Self.banco_parking_ibfk_1" FromRole="banco_parking" ToRole="pensiones_unicas" />
+          <NavigationProperty Name="cobro" Relationship="Self.banco_parking_ibfk_2" FromRole="banco_parking" ToRole="cobro" />
+          <NavigationProperty Name="serviciosadicionales" Relationship="Self.banco_parking_ibfk_3" FromRole="banco_parking" ToRole="serviciosadicionales" />
+          <NavigationProperty Name="penalizaciones" Relationship="Self.banco_parking_ibfk_4" FromRole="banco_parking" ToRole="penalizaciones" />
+          <NavigationProperty Name="cortes" Relationship="Self.banco_parking_ibfk_5" FromRole="banco_parking" ToRole="cortes" />
+        </EntityType>
+        <EntityType Name="banco_pension">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Folio" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="FechaInscripcion" Type="DateTime" />
+          <Property Name="FechaUltimoPago" Type="DateTime" />
+          <Property Name="CobradoPor" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Inicio_Pension" Type="DateTime" />
+          <Property Name="Fin_Pension" Type="DateTime" />
+          <Property Name="ID_Tipo_Pension" Type="Int32" Nullable="false" />
+          <Property Name="StatusPago" Type="Boolean" />
+          <Property Name="No_PagosAnticipados" Type="Int32" />
+          <Property Name="Costo" Type="Decimal" />
+          <Property Name="Pagos" Type="Decimal" />
+          <Property Name="Id_cliente" Type="Int32" />
+          <Property Name="Pension_Corte" Type="Boolean" />
+          <Property Name="Pension_Activa" Type="Boolean" />
+          <Property Name="Id_corte" Type="Int32" />
+          <NavigationProperty Name="pensiones" Relationship="Self.banco_pension_ibfk_1" FromRole="banco_pension" ToRole="pensiones" />
+          <NavigationProperty Name="bitacora_pensiones" Relationship="Self.bitacora_pensiones_ibfk_1" FromRole="banco_pension" ToRole="bitacora_pensiones" />
+        </EntityType>
+        <EntityType Name="bitacora_pensiones">
+          <Key>
+            <PropertyRef Name="Id_bitacora" />
+          </Key>
+          <Property Name="Id_bitacora" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Fecha_Entrada" Type="DateTime" Nullable="false" />
+          <Property Name="Fecha_salida" Type="DateTime" />
+          <Property Name="Hora_Entrada" Type="Time" Nullable="false" />
+          <Property Name="Hora_Salida" Type="Time" />
+          <Property Name="Tiempo_Exedido" Type="Time" />
+          <Property Name="Penalizacion" Type="Boolean" Nullable="false" />
+          <Property Name="Monto_Penalizacion" Type="Decimal" />
+          <Property Name="Id_Pension" Type="Int32" />
+          <NavigationProperty Name="banco_pension" Relationship="Self.bitacora_pensiones_ibfk_1" FromRole="bitacora_pensiones" ToRole="banco_pension" />
+        </EntityType>
+        <EntityType Name="cliente">
+          <Key>
+            <PropertyRef Name="Id_cliente" />
+          </Key>
+          <Property Name="Id_cliente" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Apellido_paterno" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Apellido_materno" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Tel1" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Tel2" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Direccion" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Correo" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="RFC" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Razon_Social" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Id_Vehiculo" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="vehiculo" Relationship="Self.cliente_ibfk_1" FromRole="cliente" ToRole="vehiculo" />
+        </EntityType>
+        <EntityType Name="cobro">
+          <Key>
+            <PropertyRef Name="ID_Tabulador" />
+          </Key>
+          <Property Name="ID_Tabulador" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Tarifa_Habilitada" Type="Boolean" />
+          <Property Name="FormaCobro" Type="Boolean" />
+          <Property Name="TipoCobro" Type="Boolean" />
+          <Property Name="CobroLineal_ImporteDefault" Type="Decimal" />
+          <Property Name="CobroLineal_minDefault" Type="Int32" />
+          <Property Name="CobroLineal_Importe" Type="Decimal" />
+          <Property Name="CobroLineal_minFrecuencia" Type="Int32" />
+          <Property Name="min_30" Type="Decimal" />
+          <Property Name="min_60" Type="Decimal" />
+          <Property Name="min_90" Type="Decimal" />
+          <Property Name="min_120" Type="Decimal" />
+          <Property Name="min_150" Type="Decimal" />
+          <Property Name="min_180" Type="Decimal" />
+          <Property Name="min_210" Type="Decimal" />
+          <Property Name="min_240" Type="Decimal" />
+          <Property Name="min_270" Type="Decimal" />
+          <Property Name="min_300" Type="Decimal" />
+          <Property Name="min_330" Type="Decimal" />
+          <Property Name="min_360" Type="Decimal" />
+          <Property Name="min_390" Type="Decimal" />
+          <Property Name="min_420" Type="Decimal" />
+          <Property Name="min_450" Type="Decimal" />
+          <Property Name="min_480" Type="Decimal" />
+          <Property Name="min_510" Type="Decimal" />
+          <Property Name="min_540" Type="Decimal" />
+          <Property Name="min_570" Type="Decimal" />
+          <Property Name="min_600" Type="Decimal" />
+          <Property Name="min_630" Type="Decimal" />
+          <Property Name="min_660" Type="Decimal" />
+          <Property Name="min_690" Type="Decimal" />
+          <Property Name="min_720" Type="Decimal" />
+          <Property Name="min_750" Type="Decimal" />
+          <Property Name="min_780" Type="Decimal" />
+          <Property Name="min_810" Type="Decimal" />
+          <Property Name="min_840" Type="Decimal" />
+          <Property Name="min_870" Type="Decimal" />
+          <Property Name="min_900" Type="Decimal" />
+          <Property Name="min_930" Type="Decimal" />
+          <Property Name="min_960" Type="Decimal" />
+          <Property Name="min_990" Type="Decimal" />
+          <Property Name="min_1020" Type="Decimal" />
+          <Property Name="min_1050" Type="Decimal" />
+          <Property Name="min_1080" Type="Decimal" />
+          <Property Name="min_1110" Type="Decimal" />
+          <Property Name="min_1140" Type="Decimal" />
+          <Property Name="min_1170" Type="Decimal" />
+          <Property Name="min_1200" Type="Decimal" />
+          <Property Name="min_1230" Type="Decimal" />
+          <Property Name="min_1260" Type="Decimal" />
+          <Property Name="min_1290" Type="Decimal" />
+          <Property Name="min_1320" Type="Decimal" />
+          <Property Name="min_1350" Type="Decimal" />
+          <Property Name="min_1380" Type="Decimal" />
+          <Property Name="min_1410" Type="Decimal" />
+          <Property Name="min_1440" Type="Decimal" />
+          <NavigationProperty Name="banco_parking" Relationship="Self.banco_parking_ibfk_2" FromRole="cobro" ToRole="banco_parking" />
+        </EntityType>
+        <EntityType Name="config_tickets">
+          <Key>
+            <PropertyRef Name="ID_ticket" />
+          </Key>
+          <Property Name="ID_ticket" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Incluir_Logo" Type="Boolean" />
+          <Property Name="Tamaño_papel" Type="Boolean" />
+          <Property Name="Estacionamiento" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="Direccion" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="Razon_Social" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Telefono" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="RFC" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="DatosEntrada" Type="String" MaxLength="65535" FixedLength="false" Unicode="false" />
+          <Property Name="DatosSalida" Type="String" MaxLength="65535" FixedLength="false" Unicode="false" />
+          <Property Name="DatosPerdido" Type="String" MaxLength="65535" FixedLength="false" Unicode="false" />
+          <Property Name="DatosCortesia" Type="String" MaxLength="65535" FixedLength="false" Unicode="false" />
+          <Property Name="DatosConvenio" Type="String" MaxLength="65535" FixedLength="false" Unicode="false" />
+          <Property Name="DatosCancelado" Type="String" MaxLength="65535" FixedLength="false" Unicode="false" />
+          <Property Name="DatosPension" Type="String" MaxLength="65535" FixedLength="false" Unicode="false" />
+          <Property Name="Imagen" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="Cantidad_Copias_Entrada" Type="Int32" Nullable="false" />
+          <Property Name="Cantidad_Copias_Salida" Type="Int32" Nullable="false" />
+          <Property Name="Desarrollador" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="configgen1">
+          <Key>
+            <PropertyRef Name="ID_config" />
+          </Key>
+          <Property Name="ID_config" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PeriodoCobro" Type="Boolean" Nullable="false" />
+          <Property Name="Tolerancia_ingreso" Type="Int32" Nullable="false" />
+          <Property Name="Tolerancia_proxtarifa" Type="Int32" Nullable="false" />
+          <Property Name="Ticket_cancel" Type="Boolean" Nullable="false" />
+          <Property Name="TCancel" Type="Int32" Nullable="false" />
+          <Property Name="Ticket_cortesia" Type="Boolean" Nullable="false" />
+          <Property Name="Tcortesia" Type="Int32" Nullable="false" />
+          <Property Name="Ticker_perdido" Type="Boolean" Nullable="false" />
+          <Property Name="Tperdido" Type="Int32" Nullable="false" />
+          <Property Name="Multa" Type="Int32" Nullable="false" />
+          <Property Name="Capacidad" Type="Int32" Nullable="false" />
+          <Property Name="Buscar_vehiculo" Type="Boolean" Nullable="false" />
+          <Property Name="Modo_cobro" Type="Boolean" Nullable="false" />
+          <Property Name="Limpiar" Type="Int32" Nullable="false" />
+          <Property Name="DireccionFactura" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="cortes">
+          <Key>
+            <PropertyRef Name="Id_Corte" />
+          </Key>
+          <Property Name="Id_Corte" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Usuario" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="FechaCorte" Type="DateTime" />
+          <Property Name="Importe_Parqueo" Type="Decimal" />
+          <Property Name="Importe_Cortes" Type="Decimal" />
+          <Property Name="Importe_Reportado" Type="Decimal" />
+          <Property Name="StatusCorte" Type="Boolean" />
+          <Property Name="CorteNormal" Type="Decimal" />
+          <Property Name="CorteTarifa2" Type="Decimal" />
+          <Property Name="CortePension" Type="Decimal" />
+          <Property Name="CortePenalizacion" Type="Decimal" />
+          <NavigationProperty Name="banco_parking" Relationship="Self.banco_parking_ibfk_5" FromRole="cortes" ToRole="banco_parking" />
+        </EntityType>
+        <EntityType Name="email">
+          <Key>
+            <PropertyRef Name="ID_Email" />
+          </Key>
+          <Property Name="ID_Email" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Direccion_Email" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="Password" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="Asunto" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="Cuerpo" Type="String" MaxLength="2000" FixedLength="false" Unicode="false" />
+          <Property Name="Url_Encabezado" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="Nombre" Type="String" MaxLength="800" FixedLength="false" Unicode="false" />
+          <Property Name="Direccion" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="Correo" Type="String" MaxLength="800" FixedLength="false" Unicode="false" />
+          <Property Name="Telefono" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="WebSite" Type="String" MaxLength="800" FixedLength="false" Unicode="false" />
+          <Property Name="ID_ProveedoresCorreo" Type="Int32" />
+          <NavigationProperty Name="proveedorescorreo" Relationship="Self.email_ibfk_1" FromRole="email" ToRole="proveedorescorreo" />
+        </EntityType>
+        <EntityType Name="penalizaciones">
+          <Key>
+            <PropertyRef Name="ID_Penalizacion" />
+          </Key>
+          <Property Name="ID_Penalizacion" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Penalizacion" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Penalizacion_Activa" Type="Boolean" />
+          <Property Name="Precio_Penalizacion" Type="Decimal" />
+          <Property Name="Penalizacion_Tolerancia" Type="Int32" />
+          <NavigationProperty Name="banco_parking" Relationship="Self.banco_parking_ibfk_4" FromRole="penalizaciones" ToRole="banco_parking" />
+        </EntityType>
+        <EntityType Name="pensiones">
+          <Key>
+            <PropertyRef Name="ID_Tipo_Pension" />
+          </Key>
+          <Property Name="ID_Tipo_Pension" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Pensn_Tipo" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Pens_Bonificacion" Type="Decimal" />
+          <Property Name="Pens_Costo_Regular" Type="Decimal" />
+          <Property Name="Pens_Tolerancia_dias" Type="Int32" />
+          <Property Name="Pens_Recargos" Type="Decimal" />
+          <Property Name="Pens_Cobro_1" Type="Int32" />
+          <Property Name="Pens_Cobro_2" Type="Int32" />
+          <Property Name="Pens_DiasInactivo" Type="Int32" />
+          <NavigationProperty Name="banco_pension" Relationship="Self.banco_pension_ibfk_1" FromRole="pensiones" ToRole="banco_pension" />
+        </EntityType>
+        <EntityType Name="pensiones_unicas">
+          <Key>
+            <PropertyRef Name="ID_PensionU" />
+          </Key>
+          <Property Name="ID_PensionU" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre_PensionU" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="ID_Tipo_PensionU" Type="Int32" Nullable="false" />
+          <Property Name="PensionU_Activa" Type="Boolean" />
+          <Property Name="Precio_PensionU" Type="Decimal" />
+          <NavigationProperty Name="banco_parking" Relationship="Self.banco_parking_ibfk_1" FromRole="pensiones_unicas" ToRole="banco_parking" />
+          <NavigationProperty Name="tipos_pensionesu" Relationship="Self.pensiones_unicas_ibfk_1" FromRole="pensiones_unicas" ToRole="tipos_pensionesu" />
+        </EntityType>
+        <EntityType Name="proveedorescorreo">
+          <Key>
+            <PropertyRef Name="ID_ProveedoresCorreo" />
+          </Key>
+          <Property Name="ID_ProveedoresCorreo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Dominio" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Servidor_SMTP" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="Puerto" Type="Int32" />
+          <NavigationProperty Name="email" Relationship="Self.email_ibfk_1" FromRole="proveedorescorreo" ToRole="email" />
+          <NavigationProperty Name="usuario" Relationship="Self.usuario_ibfk_2" FromRole="proveedorescorreo" ToRole="usuario" />
+        </EntityType>
+        <EntityType Name="serviciosadicionales">
+          <Key>
+            <PropertyRef Name="ID_ServicioAd" />
+          </Key>
+          <Property Name="ID_ServicioAd" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ServicioAdicional" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="ServicioAd_Activo" Type="Boolean" />
+          <Property Name="Precio_ServiciosAd" Type="Decimal" />
+          <Property Name="Tiempo_Gracia" Type="Int32" />
+          <NavigationProperty Name="banco_parking" Relationship="Self.banco_parking_ibfk_3" FromRole="serviciosadicionales" ToRole="banco_parking" />
+        </EntityType>
+        <EntityType Name="tipos_pensionesu">
+          <Key>
+            <PropertyRef Name="ID_Tipo_PensionU" />
+          </Key>
+          <Property Name="ID_Tipo_PensionU" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Tipo_PensionU" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="HoraInicio" Type="Time" />
+          <Property Name="HoraFin" Type="Time" />
+          <Property Name="Tolerancia_IN" Type="Int32" />
+          <Property Name="Tolerancia_OUT" Type="Int32" />
+          <NavigationProperty Name="pensiones_unicas" Relationship="Self.pensiones_unicas_ibfk_1" FromRole="tipos_pensionesu" ToRole="pensiones_unicas" />
+        </EntityType>
+        <EntityType Name="usuario">
+          <Key>
+            <PropertyRef Name="ID_Usuario" />
+          </Key>
+          <Property Name="ID_Usuario" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Privilegios" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Usuario1" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="Password" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="Nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Telefono" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ID_AreaPersonal" Type="Int32" Nullable="false" />
+          <Property Name="Puesto" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="mail_Correo" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="mail_Password" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="ID_ProveedoresCorreo" Type="Int32" />
+          <Property Name="CorreoConfirmado" Type="Boolean" />
+          <NavigationProperty Name="areas_personal" Relationship="Self.usuario_ibfk_1" FromRole="usuario" ToRole="areas_personal" />
+          <NavigationProperty Name="proveedorescorreo" Relationship="Self.usuario_ibfk_2" FromRole="usuario" ToRole="proveedorescorreo" />
+        </EntityType>
+        <EntityType Name="vehiculo">
+          <Key>
+            <PropertyRef Name="Id_Vehiculo" />
+          </Key>
+          <Property Name="Id_Vehiculo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Marca" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Placa" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Color" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Descripcion" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="cliente" Relationship="Self.cliente_ibfk_1" FromRole="vehiculo" ToRole="cliente" />
+        </EntityType>
+        <Association Name="usuario_ibfk_1">
+          <End Role="areas_personal" Type="Self.areas_personal" Multiplicity="1" />
+          <End Role="usuario" Type="Self.usuario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="areas_personal">
+              <PropertyRef Name="ID_AreaPersonal" />
+            </Principal>
+            <Dependent Role="usuario">
+              <PropertyRef Name="ID_AreaPersonal" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="banco_parking_ibfk_1">
+          <End Role="pensiones_unicas" Type="Self.pensiones_unicas" Multiplicity="1" />
+          <End Role="banco_parking" Type="Self.banco_parking" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="pensiones_unicas">
+              <PropertyRef Name="ID_PensionU" />
+            </Principal>
+            <Dependent Role="banco_parking">
+              <PropertyRef Name="ID_PensionU" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="banco_parking_ibfk_2">
+          <End Role="cobro" Type="Self.cobro" Multiplicity="1" />
+          <End Role="banco_parking" Type="Self.banco_parking" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="cobro">
+              <PropertyRef Name="ID_Tabulador" />
+            </Principal>
+            <Dependent Role="banco_parking">
+              <PropertyRef Name="ID_Cobro" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="banco_parking_ibfk_3">
+          <End Role="serviciosadicionales" Type="Self.serviciosadicionales" Multiplicity="1" />
+          <End Role="banco_parking" Type="Self.banco_parking" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="serviciosadicionales">
+              <PropertyRef Name="ID_ServicioAd" />
+            </Principal>
+            <Dependent Role="banco_parking">
+              <PropertyRef Name="ID_ServicioAd" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="banco_parking_ibfk_4">
+          <End Role="penalizaciones" Type="Self.penalizaciones" Multiplicity="1" />
+          <End Role="banco_parking" Type="Self.banco_parking" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="penalizaciones">
+              <PropertyRef Name="ID_Penalizacion" />
+            </Principal>
+            <Dependent Role="banco_parking">
+              <PropertyRef Name="ID_Penalizacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="banco_parking_ibfk_5">
+          <End Role="cortes" Type="Self.cortes" Multiplicity="0..1" />
+          <End Role="banco_parking" Type="Self.banco_parking" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="cortes">
+              <PropertyRef Name="Id_Corte" />
+            </Principal>
+            <Dependent Role="banco_parking">
+              <PropertyRef Name="Id_corte" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="banco_pension_ibfk_1">
+          <End Role="pensiones" Type="Self.pensiones" Multiplicity="1" />
+          <End Role="banco_pension" Type="Self.banco_pension" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="pensiones">
+              <PropertyRef Name="ID_Tipo_Pension" />
+            </Principal>
+            <Dependent Role="banco_pension">
+              <PropertyRef Name="ID_Tipo_Pension" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="bitacora_pensiones_ibfk_1">
+          <End Role="banco_pension" Type="Self.banco_pension" Multiplicity="0..1" />
+          <End Role="bitacora_pensiones" Type="Self.bitacora_pensiones" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="banco_pension">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="bitacora_pensiones">
+              <PropertyRef Name="Id_Pension" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="cliente_ibfk_1">
+          <End Role="vehiculo" Type="Self.vehiculo" Multiplicity="1" />
+          <End Role="cliente" Type="Self.cliente" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="vehiculo">
+              <PropertyRef Name="Id_Vehiculo" />
+            </Principal>
+            <Dependent Role="cliente">
+              <PropertyRef Name="Id_Vehiculo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="email_ibfk_1">
+          <End Role="proveedorescorreo" Type="Self.proveedorescorreo" Multiplicity="0..1" />
+          <End Role="email" Type="Self.email" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="proveedorescorreo">
+              <PropertyRef Name="ID_ProveedoresCorreo" />
+            </Principal>
+            <Dependent Role="email">
+              <PropertyRef Name="ID_ProveedoresCorreo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="pensiones_unicas_ibfk_1">
+          <End Role="tipos_pensionesu" Type="Self.tipos_pensionesu" Multiplicity="1" />
+          <End Role="pensiones_unicas" Type="Self.pensiones_unicas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tipos_pensionesu">
+              <PropertyRef Name="ID_Tipo_PensionU" />
+            </Principal>
+            <Dependent Role="pensiones_unicas">
+              <PropertyRef Name="ID_Tipo_PensionU" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="usuario_ibfk_2">
+          <End Role="proveedorescorreo" Type="Self.proveedorescorreo" Multiplicity="0..1" />
+          <End Role="usuario" Type="Self.usuario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="proveedorescorreo">
+              <PropertyRef Name="ID_ProveedoresCorreo" />
+            </Principal>
+            <Dependent Role="usuario">
+              <PropertyRef Name="ID_ProveedoresCorreo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="PARKING_DBEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="areas_personal" EntityType="Self.areas_personal" />
+          <EntitySet Name="banco_parking" EntityType="Self.banco_parking" />
+          <EntitySet Name="banco_pension" EntityType="Self.banco_pension" />
+          <EntitySet Name="bitacora_pensiones" EntityType="Self.bitacora_pensiones" />
+          <EntitySet Name="cliente" EntityType="Self.cliente" />
+          <EntitySet Name="cobro" EntityType="Self.cobro" />
+          <EntitySet Name="config_tickets" EntityType="Self.config_tickets" />
+          <EntitySet Name="configgen1" EntityType="Self.configgen1" />
+          <EntitySet Name="cortes" EntityType="Self.cortes" />
+          <EntitySet Name="email" EntityType="Self.email" />
+          <EntitySet Name="penalizaciones" EntityType="Self.penalizaciones" />
+          <EntitySet Name="pensiones" EntityType="Self.pensiones" />
+          <EntitySet Name="pensiones_unicas" EntityType="Self.pensiones_unicas" />
+          <EntitySet Name="proveedorescorreo" EntityType="Self.proveedorescorreo" />
+          <EntitySet Name="serviciosadicionales" EntityType="Self.serviciosadicionales" />
+          <EntitySet Name="tipos_pensionesu" EntityType="Self.tipos_pensionesu" />
+          <EntitySet Name="usuario" EntityType="Self.usuario" />
+          <EntitySet Name="vehiculo" EntityType="Self.vehiculo" />
+          <AssociationSet Name="usuario_ibfk_1" Association="Self.usuario_ibfk_1">
+            <End Role="areas_personal" EntitySet="areas_personal" />
+            <End Role="usuario" EntitySet="usuario" />
+          </AssociationSet>
+          <AssociationSet Name="banco_parking_ibfk_1" Association="Self.banco_parking_ibfk_1">
+            <End Role="pensiones_unicas" EntitySet="pensiones_unicas" />
+            <End Role="banco_parking" EntitySet="banco_parking" />
+          </AssociationSet>
+          <AssociationSet Name="banco_parking_ibfk_2" Association="Self.banco_parking_ibfk_2">
+            <End Role="cobro" EntitySet="cobro" />
+            <End Role="banco_parking" EntitySet="banco_parking" />
+          </AssociationSet>
+          <AssociationSet Name="banco_parking_ibfk_3" Association="Self.banco_parking_ibfk_3">
+            <End Role="serviciosadicionales" EntitySet="serviciosadicionales" />
+            <End Role="banco_parking" EntitySet="banco_parking" />
+          </AssociationSet>
+          <AssociationSet Name="banco_parking_ibfk_4" Association="Self.banco_parking_ibfk_4">
+            <End Role="penalizaciones" EntitySet="penalizaciones" />
+            <End Role="banco_parking" EntitySet="banco_parking" />
+          </AssociationSet>
+          <AssociationSet Name="banco_parking_ibfk_5" Association="Self.banco_parking_ibfk_5">
+            <End Role="cortes" EntitySet="cortes" />
+            <End Role="banco_parking" EntitySet="banco_parking" />
+          </AssociationSet>
+          <AssociationSet Name="banco_pension_ibfk_1" Association="Self.banco_pension_ibfk_1">
+            <End Role="pensiones" EntitySet="pensiones" />
+            <End Role="banco_pension" EntitySet="banco_pension" />
+          </AssociationSet>
+          <AssociationSet Name="bitacora_pensiones_ibfk_1" Association="Self.bitacora_pensiones_ibfk_1">
+            <End Role="banco_pension" EntitySet="banco_pension" />
+            <End Role="bitacora_pensiones" EntitySet="bitacora_pensiones" />
+          </AssociationSet>
+          <AssociationSet Name="cliente_ibfk_1" Association="Self.cliente_ibfk_1">
+            <End Role="vehiculo" EntitySet="vehiculo" />
+            <End Role="cliente" EntitySet="cliente" />
+          </AssociationSet>
+          <AssociationSet Name="email_ibfk_1" Association="Self.email_ibfk_1">
+            <End Role="proveedorescorreo" EntitySet="proveedorescorreo" />
+            <End Role="email" EntitySet="email" />
+          </AssociationSet>
+          <AssociationSet Name="pensiones_unicas_ibfk_1" Association="Self.pensiones_unicas_ibfk_1">
+            <End Role="tipos_pensionesu" EntitySet="tipos_pensionesu" />
+            <End Role="pensiones_unicas" EntitySet="pensiones_unicas" />
+          </AssociationSet>
+          <AssociationSet Name="usuario_ibfk_2" Association="Self.usuario_ibfk_2">
+            <End Role="proveedorescorreo" EntitySet="proveedorescorreo" />
+            <End Role="usuario" EntitySet="usuario" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="parking_dbModelStoreContainer" CdmEntityContainer="PARKING_DBEntities">
+          <EntitySetMapping Name="areas_personal">
+            <EntityTypeMapping TypeName="parking_dbModel.areas_personal">
+              <MappingFragment StoreEntitySet="areas_personal">
+                <ScalarProperty Name="ID_AreaPersonal" ColumnName="ID_AreaPersonal" />
+                <ScalarProperty Name="AreaPersonal" ColumnName="AreaPersonal" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="banco_parking">
+            <EntityTypeMapping TypeName="parking_dbModel.banco_parking">
+              <MappingFragment StoreEntitySet="banco_parking">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Folio" ColumnName="Folio" />
+                <ScalarProperty Name="FechaEntrada" ColumnName="FechaEntrada" />
+                <ScalarProperty Name="HoraEntrada" ColumnName="HoraEntrada" />
+                <ScalarProperty Name="ExpedidoPor" ColumnName="ExpedidoPor" />
+                <ScalarProperty Name="Placa" ColumnName="Placa" />
+                <ScalarProperty Name="Marca" ColumnName="Marca" />
+                <ScalarProperty Name="Color" ColumnName="Color" />
+                <ScalarProperty Name="ID_PensionU" ColumnName="ID_PensionU" />
+                <ScalarProperty Name="ID_Cobro" ColumnName="ID_Cobro" />
+                <ScalarProperty Name="ID_ServicioAd" ColumnName="ID_ServicioAd" />
+                <ScalarProperty Name="ID_Penalizacion" ColumnName="ID_Penalizacion" />
+                <ScalarProperty Name="FechaSalida" ColumnName="FechaSalida" />
+                <ScalarProperty Name="HoraSalida" ColumnName="HoraSalida" />
+                <ScalarProperty Name="CobradoPor" ColumnName="CobradoPor" />
+                <ScalarProperty Name="T_Parqueo" ColumnName="T_Parqueo" />
+                <ScalarProperty Name="Estancia" ColumnName="Estancia" />
+                <ScalarProperty Name="Importe" ColumnName="Importe" />
+                <ScalarProperty Name="Pago" ColumnName="Pago" />
+                <ScalarProperty Name="ModoCobro" ColumnName="ModoCobro" />
+                <ScalarProperty Name="ModoTicket" ColumnName="ModoTicket" />
+                <ScalarProperty Name="Justificacion" ColumnName="Justificacion" />
+                <ScalarProperty Name="Corte" ColumnName="Corte" />
+                <ScalarProperty Name="Semana" ColumnName="Semana" />
+                <ScalarProperty Name="Mes" ColumnName="Mes" />
+                <ScalarProperty Name="Id_corte" ColumnName="Id_corte" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="banco_pension">
+            <EntityTypeMapping TypeName="parking_dbModel.banco_pension">
+              <MappingFragment StoreEntitySet="banco_pension">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Folio" ColumnName="Folio" />
+                <ScalarProperty Name="FechaInscripcion" ColumnName="FechaInscripcion" />
+                <ScalarProperty Name="FechaUltimoPago" ColumnName="FechaUltimoPago" />
+                <ScalarProperty Name="CobradoPor" ColumnName="CobradoPor" />
+                <ScalarProperty Name="Inicio_Pension" ColumnName="Inicio_Pension" />
+                <ScalarProperty Name="Fin_Pension" ColumnName="Fin_Pension" />
+                <ScalarProperty Name="ID_Tipo_Pension" ColumnName="ID_Tipo_Pension" />
+                <ScalarProperty Name="StatusPago" ColumnName="StatusPago" />
+                <ScalarProperty Name="No_PagosAnticipados" ColumnName="No_PagosAnticipados" />
+                <ScalarProperty Name="Costo" ColumnName="Costo" />
+                <ScalarProperty Name="Pagos" ColumnName="Pagos" />
+                <ScalarProperty Name="Id_cliente" ColumnName="Id_cliente" />
+                <ScalarProperty Name="Pension_Corte" ColumnName="Pension_Corte" />
+                <ScalarProperty Name="Pension_Activa" ColumnName="Pension_Activa" />
+                <ScalarProperty Name="Id_corte" ColumnName="Id_corte" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="bitacora_pensiones">
+            <EntityTypeMapping TypeName="parking_dbModel.bitacora_pensiones">
+              <MappingFragment StoreEntitySet="bitacora_pensiones">
+                <ScalarProperty Name="Id_bitacora" ColumnName="Id_bitacora" />
+                <ScalarProperty Name="Fecha_Entrada" ColumnName="Fecha_Entrada" />
+                <ScalarProperty Name="Fecha_salida" ColumnName="Fecha_salida" />
+                <ScalarProperty Name="Hora_Entrada" ColumnName="Hora_Entrada" />
+                <ScalarProperty Name="Hora_Salida" ColumnName="Hora_Salida" />
+                <ScalarProperty Name="Tiempo_Exedido" ColumnName="Tiempo_Exedido" />
+                <ScalarProperty Name="Penalizacion" ColumnName="Penalizacion" />
+                <ScalarProperty Name="Monto_Penalizacion" ColumnName="Monto_Penalizacion" />
+                <ScalarProperty Name="Id_Pension" ColumnName="Id_Pension" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="cliente">
+            <EntityTypeMapping TypeName="parking_dbModel.cliente">
+              <MappingFragment StoreEntitySet="cliente">
+                <ScalarProperty Name="Id_cliente" ColumnName="Id_cliente" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Apellido_paterno" ColumnName="Apellido_paterno" />
+                <ScalarProperty Name="Apellido_materno" ColumnName="Apellido_materno" />
+                <ScalarProperty Name="Tel1" ColumnName="Tel1" />
+                <ScalarProperty Name="Tel2" ColumnName="Tel2" />
+                <ScalarProperty Name="Direccion" ColumnName="Direccion" />
+                <ScalarProperty Name="Correo" ColumnName="Correo" />
+                <ScalarProperty Name="RFC" ColumnName="RFC" />
+                <ScalarProperty Name="Razon_Social" ColumnName="Razon_Social" />
+                <ScalarProperty Name="Id_Vehiculo" ColumnName="Id_Vehiculo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="cobro">
+            <EntityTypeMapping TypeName="parking_dbModel.cobro">
+              <MappingFragment StoreEntitySet="cobro">
+                <ScalarProperty Name="ID_Tabulador" ColumnName="ID_Tabulador" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Tarifa_Habilitada" ColumnName="Tarifa_Habilitada" />
+                <ScalarProperty Name="FormaCobro" ColumnName="FormaCobro" />
+                <ScalarProperty Name="TipoCobro" ColumnName="TipoCobro" />
+                <ScalarProperty Name="CobroLineal_ImporteDefault" ColumnName="CobroLineal_ImporteDefault" />
+                <ScalarProperty Name="CobroLineal_minDefault" ColumnName="CobroLineal_minDefault" />
+                <ScalarProperty Name="CobroLineal_Importe" ColumnName="CobroLineal_Importe" />
+                <ScalarProperty Name="CobroLineal_minFrecuencia" ColumnName="CobroLineal_minFrecuencia" />
+                <ScalarProperty Name="min_30" ColumnName="min_30" />
+                <ScalarProperty Name="min_60" ColumnName="min_60" />
+                <ScalarProperty Name="min_90" ColumnName="min_90" />
+                <ScalarProperty Name="min_120" ColumnName="min_120" />
+                <ScalarProperty Name="min_150" ColumnName="min_150" />
+                <ScalarProperty Name="min_180" ColumnName="min_180" />
+                <ScalarProperty Name="min_210" ColumnName="min_210" />
+                <ScalarProperty Name="min_240" ColumnName="min_240" />
+                <ScalarProperty Name="min_270" ColumnName="min_270" />
+                <ScalarProperty Name="min_300" ColumnName="min_300" />
+                <ScalarProperty Name="min_330" ColumnName="min_330" />
+                <ScalarProperty Name="min_360" ColumnName="min_360" />
+                <ScalarProperty Name="min_390" ColumnName="min_390" />
+                <ScalarProperty Name="min_420" ColumnName="min_420" />
+                <ScalarProperty Name="min_450" ColumnName="min_450" />
+                <ScalarProperty Name="min_480" ColumnName="min_480" />
+                <ScalarProperty Name="min_510" ColumnName="min_510" />
+                <ScalarProperty Name="min_540" ColumnName="min_540" />
+                <ScalarProperty Name="min_570" ColumnName="min_570" />
+                <ScalarProperty Name="min_600" ColumnName="min_600" />
+                <ScalarProperty Name="min_630" ColumnName="min_630" />
+                <ScalarProperty Name="min_660" ColumnName="min_660" />
+                <ScalarProperty Name="min_690" ColumnName="min_690" />
+                <ScalarProperty Name="min_720" ColumnName="min_720" />
+                <ScalarProperty Name="min_750" ColumnName="min_750" />
+                <ScalarProperty Name="min_780" ColumnName="min_780" />
+                <ScalarProperty Name="min_810" ColumnName="min_810" />
+                <ScalarProperty Name="min_840" ColumnName="min_840" />
+                <ScalarProperty Name="min_870" ColumnName="min_870" />
+                <ScalarProperty Name="min_900" ColumnName="min_900" />
+                <ScalarProperty Name="min_930" ColumnName="min_930" />
+                <ScalarProperty Name="min_960" ColumnName="min_960" />
+                <ScalarProperty Name="min_990" ColumnName="min_990" />
+                <ScalarProperty Name="min_1020" ColumnName="min_1020" />
+                <ScalarProperty Name="min_1050" ColumnName="min_1050" />
+                <ScalarProperty Name="min_1080" ColumnName="min_1080" />
+                <ScalarProperty Name="min_1110" ColumnName="min_1110" />
+                <ScalarProperty Name="min_1140" ColumnName="min_1140" />
+                <ScalarProperty Name="min_1170" ColumnName="min_1170" />
+                <ScalarProperty Name="min_1200" ColumnName="min_1200" />
+                <ScalarProperty Name="min_1230" ColumnName="min_1230" />
+                <ScalarProperty Name="min_1260" ColumnName="min_1260" />
+                <ScalarProperty Name="min_1290" ColumnName="min_1290" />
+                <ScalarProperty Name="min_1320" ColumnName="min_1320" />
+                <ScalarProperty Name="min_1350" ColumnName="min_1350" />
+                <ScalarProperty Name="min_1380" ColumnName="min_1380" />
+                <ScalarProperty Name="min_1410" ColumnName="min_1410" />
+                <ScalarProperty Name="min_1440" ColumnName="min_1440" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="config_tickets">
+            <EntityTypeMapping TypeName="parking_dbModel.config_tickets">
+              <MappingFragment StoreEntitySet="config_tickets">
+                <ScalarProperty Name="ID_ticket" ColumnName="ID_ticket" />
+                <ScalarProperty Name="Incluir_Logo" ColumnName="Incluir_Logo" />
+                <ScalarProperty Name="Tamaño_papel" ColumnName="Tamaño_papel" />
+                <ScalarProperty Name="Estacionamiento" ColumnName="Estacionamiento" />
+                <ScalarProperty Name="Direccion" ColumnName="Direccion" />
+                <ScalarProperty Name="Razon_Social" ColumnName="Razon_Social" />
+                <ScalarProperty Name="Telefono" ColumnName="Telefono" />
+                <ScalarProperty Name="RFC" ColumnName="RFC" />
+                <ScalarProperty Name="DatosEntrada" ColumnName="DatosEntrada" />
+                <ScalarProperty Name="DatosSalida" ColumnName="DatosSalida" />
+                <ScalarProperty Name="DatosPerdido" ColumnName="DatosPerdido" />
+                <ScalarProperty Name="DatosCortesia" ColumnName="DatosCortesia" />
+                <ScalarProperty Name="DatosConvenio" ColumnName="DatosConvenio" />
+                <ScalarProperty Name="DatosCancelado" ColumnName="DatosCancelado" />
+                <ScalarProperty Name="DatosPension" ColumnName="DatosPension" />
+                <ScalarProperty Name="Imagen" ColumnName="Imagen" />
+                <ScalarProperty Name="Cantidad_Copias_Entrada" ColumnName="Cantidad_Copias_Entrada" />
+                <ScalarProperty Name="Cantidad_Copias_Salida" ColumnName="Cantidad_Copias_Salida" />
+                <ScalarProperty Name="Desarrollador" ColumnName="Desarrollador" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="configgen1">
+            <EntityTypeMapping TypeName="parking_dbModel.configgen1">
+              <MappingFragment StoreEntitySet="configgen1">
+                <ScalarProperty Name="ID_config" ColumnName="ID_config" />
+                <ScalarProperty Name="PeriodoCobro" ColumnName="PeriodoCobro" />
+                <ScalarProperty Name="Tolerancia_ingreso" ColumnName="Tolerancia_ingreso" />
+                <ScalarProperty Name="Tolerancia_proxtarifa" ColumnName="Tolerancia_proxtarifa" />
+                <ScalarProperty Name="Ticket_cancel" ColumnName="Ticket_cancel" />
+                <ScalarProperty Name="TCancel" ColumnName="TCancel" />
+                <ScalarProperty Name="Ticket_cortesia" ColumnName="Ticket_cortesia" />
+                <ScalarProperty Name="Tcortesia" ColumnName="Tcortesia" />
+                <ScalarProperty Name="Ticker_perdido" ColumnName="Ticker_perdido" />
+                <ScalarProperty Name="Tperdido" ColumnName="Tperdido" />
+                <ScalarProperty Name="Multa" ColumnName="Multa" />
+                <ScalarProperty Name="Capacidad" ColumnName="Capacidad" />
+                <ScalarProperty Name="Buscar_vehiculo" ColumnName="Buscar_vehiculo" />
+                <ScalarProperty Name="Modo_cobro" ColumnName="Modo_cobro" />
+                <ScalarProperty Name="Limpiar" ColumnName="Limpiar" />
+                <ScalarProperty Name="DireccionFactura" ColumnName="DireccionFactura" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="cortes">
+            <EntityTypeMapping TypeName="parking_dbModel.cortes">
+              <MappingFragment StoreEntitySet="cortes">
+                <ScalarProperty Name="Id_Corte" ColumnName="Id_Corte" />
+                <ScalarProperty Name="Usuario" ColumnName="Usuario" />
+                <ScalarProperty Name="FechaCorte" ColumnName="FechaCorte" />
+                <ScalarProperty Name="Importe_Parqueo" ColumnName="Importe_Parqueo" />
+                <ScalarProperty Name="Importe_Cortes" ColumnName="Importe_Cortes" />
+                <ScalarProperty Name="Importe_Reportado" ColumnName="Importe_Reportado" />
+                <ScalarProperty Name="StatusCorte" ColumnName="StatusCorte" />
+                <ScalarProperty Name="CorteNormal" ColumnName="CorteNormal" />
+                <ScalarProperty Name="CorteTarifa2" ColumnName="CorteTarifa2" />
+                <ScalarProperty Name="CortePension" ColumnName="CortePension" />
+                <ScalarProperty Name="CortePenalizacion" ColumnName="CortePenalizacion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="email">
+            <EntityTypeMapping TypeName="parking_dbModel.email">
+              <MappingFragment StoreEntitySet="email">
+                <ScalarProperty Name="ID_Email" ColumnName="ID_Email" />
+                <ScalarProperty Name="Direccion_Email" ColumnName="Direccion_Email" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Asunto" ColumnName="Asunto" />
+                <ScalarProperty Name="Cuerpo" ColumnName="Cuerpo" />
+                <ScalarProperty Name="Url_Encabezado" ColumnName="Url_Encabezado" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Direccion" ColumnName="Direccion" />
+                <ScalarProperty Name="Correo" ColumnName="Correo" />
+                <ScalarProperty Name="Telefono" ColumnName="Telefono" />
+                <ScalarProperty Name="WebSite" ColumnName="WebSite" />
+                <ScalarProperty Name="ID_ProveedoresCorreo" ColumnName="ID_ProveedoresCorreo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="penalizaciones">
+            <EntityTypeMapping TypeName="parking_dbModel.penalizaciones">
+              <MappingFragment StoreEntitySet="penalizaciones">
+                <ScalarProperty Name="ID_Penalizacion" ColumnName="ID_Penalizacion" />
+                <ScalarProperty Name="Penalizacion" ColumnName="Penalizacion" />
+                <ScalarProperty Name="Penalizacion_Activa" ColumnName="Penalizacion_Activa" />
+                <ScalarProperty Name="Precio_Penalizacion" ColumnName="Precio_Penalizacion" />
+                <ScalarProperty Name="Penalizacion_Tolerancia" ColumnName="Penalizacion_Tolerancia" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="pensiones">
+            <EntityTypeMapping TypeName="parking_dbModel.pensiones">
+              <MappingFragment StoreEntitySet="pensiones">
+                <ScalarProperty Name="ID_Tipo_Pension" ColumnName="ID_Tipo_Pension" />
+                <ScalarProperty Name="Pensn_Tipo" ColumnName="Pensn_Tipo" />
+                <ScalarProperty Name="Pens_Bonificacion" ColumnName="Pens_Bonificacion" />
+                <ScalarProperty Name="Pens_Costo_Regular" ColumnName="Pens_Costo_Regular" />
+                <ScalarProperty Name="Pens_Tolerancia_dias" ColumnName="Pens_Tolerancia_dias" />
+                <ScalarProperty Name="Pens_Recargos" ColumnName="Pens_Recargos" />
+                <ScalarProperty Name="Pens_Cobro_1" ColumnName="Pens_Cobro_1" />
+                <ScalarProperty Name="Pens_Cobro_2" ColumnName="Pens_Cobro_2" />
+                <ScalarProperty Name="Pens_DiasInactivo" ColumnName="Pens_DiasInactivo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="pensiones_unicas">
+            <EntityTypeMapping TypeName="parking_dbModel.pensiones_unicas">
+              <MappingFragment StoreEntitySet="pensiones_unicas">
+                <ScalarProperty Name="ID_PensionU" ColumnName="ID_PensionU" />
+                <ScalarProperty Name="Nombre_PensionU" ColumnName="Nombre_PensionU" />
+                <ScalarProperty Name="ID_Tipo_PensionU" ColumnName="ID_Tipo_PensionU" />
+                <ScalarProperty Name="PensionU_Activa" ColumnName="PensionU_Activa" />
+                <ScalarProperty Name="Precio_PensionU" ColumnName="Precio_PensionU" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="proveedorescorreo">
+            <EntityTypeMapping TypeName="parking_dbModel.proveedorescorreo">
+              <MappingFragment StoreEntitySet="proveedorescorreo">
+                <ScalarProperty Name="ID_ProveedoresCorreo" ColumnName="ID_ProveedoresCorreo" />
+                <ScalarProperty Name="Dominio" ColumnName="Dominio" />
+                <ScalarProperty Name="Servidor_SMTP" ColumnName="Servidor_SMTP" />
+                <ScalarProperty Name="Puerto" ColumnName="Puerto" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="serviciosadicionales">
+            <EntityTypeMapping TypeName="parking_dbModel.serviciosadicionales">
+              <MappingFragment StoreEntitySet="serviciosadicionales">
+                <ScalarProperty Name="ID_ServicioAd" ColumnName="ID_ServicioAd" />
+                <ScalarProperty Name="ServicioAdicional" ColumnName="ServicioAdicional" />
+                <ScalarProperty Name="ServicioAd_Activo" ColumnName="ServicioAd_Activo" />
+                <ScalarProperty Name="Precio_ServiciosAd" ColumnName="Precio_ServiciosAd" />
+                <ScalarProperty Name="Tiempo_Gracia" ColumnName="Tiempo_Gracia" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tipos_pensionesu">
+            <EntityTypeMapping TypeName="parking_dbModel.tipos_pensionesu">
+              <MappingFragment StoreEntitySet="tipos_pensionesu">
+                <ScalarProperty Name="ID_Tipo_PensionU" ColumnName="ID_Tipo_PensionU" />
+                <ScalarProperty Name="Tipo_PensionU" ColumnName="Tipo_PensionU" />
+                <ScalarProperty Name="HoraInicio" ColumnName="HoraInicio" />
+                <ScalarProperty Name="HoraFin" ColumnName="HoraFin" />
+                <ScalarProperty Name="Tolerancia_IN" ColumnName="Tolerancia_IN" />
+                <ScalarProperty Name="Tolerancia_OUT" ColumnName="Tolerancia_OUT" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="usuario">
+            <EntityTypeMapping TypeName="parking_dbModel.usuario">
+              <MappingFragment StoreEntitySet="usuario">
+                <ScalarProperty Name="ID_Usuario" ColumnName="ID_Usuario" />
+                <ScalarProperty Name="Privilegios" ColumnName="Privilegios" />
+                <ScalarProperty Name="Usuario1" ColumnName="Usuario" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Telefono" ColumnName="Telefono" />
+                <ScalarProperty Name="ID_AreaPersonal" ColumnName="ID_AreaPersonal" />
+                <ScalarProperty Name="Puesto" ColumnName="Puesto" />
+                <ScalarProperty Name="mail_Correo" ColumnName="mail_Correo" />
+                <ScalarProperty Name="mail_Password" ColumnName="mail_Password" />
+                <ScalarProperty Name="ID_ProveedoresCorreo" ColumnName="ID_ProveedoresCorreo" />
+                <ScalarProperty Name="CorreoConfirmado" ColumnName="CorreoConfirmado" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="vehiculo">
+            <EntityTypeMapping TypeName="parking_dbModel.vehiculo">
+              <MappingFragment StoreEntitySet="vehiculo">
+                <ScalarProperty Name="Id_Vehiculo" ColumnName="Id_Vehiculo" />
+                <ScalarProperty Name="Marca" ColumnName="Marca" />
+                <ScalarProperty Name="Placa" ColumnName="Placa" />
+                <ScalarProperty Name="Color" ColumnName="Color" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

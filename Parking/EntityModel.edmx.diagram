@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="4d411015e62e4dca80dc83c727ec4c18" Name="Diagram1">
+        <EntityTypeShape EntityType="parking_dbModel.areas_personal" Width="1.5" PointX="10.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="parking_dbModel.banco_parking" Width="1.5" PointX="5.25" PointY="1.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="parking_dbModel.banco_pension" Width="1.5" PointX="10" PointY="9.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="parking_dbModel.bitacora_pensiones" Width="1.5" PointX="12.25" PointY="10.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="parking_dbModel.cliente" Width="1.5" PointX="3" PointY="10.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="parking_dbModel.cobro" Width="1.5" PointX="3" PointY="17.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="parking_dbModel.config_tickets" Width="1.5" PointX="5.75" PointY="14.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="parking_dbModel.configgen1" Width="1.5" PointX="12.75" PointY="14.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="parking_dbModel.cortes" Width="1.5" PointX="3" PointY="30.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="parking_dbModel.email" Width="1.5" PointX="10" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="parking_dbModel.penalizaciones" Width="1.5" PointX="3" PointY="34.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="parking_dbModel.pensiones" Width="1.5" PointX="7.75" PointY="10.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="parking_dbModel.pensiones_unicas" Width="1.5" PointX="3" PointY="3.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="parking_dbModel.proveedorescorreo" Width="1.5" PointX="7.75" PointY="4.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="parking_dbModel.serviciosadicionales" Width="1.5" PointX="3" PointY="37.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="parking_dbModel.tipos_pensionesu" Width="1.5" PointX="0.75" PointY="3.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="parking_dbModel.usuario" Width="1.5" PointX="13" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="parking_dbModel.vehiculo" Width="1.5" PointX="0.75" PointY="10.875" IsExpanded="true" />
+        <AssociationConnector Association="parking_dbModel.usuario_ibfk_1" ManuallyRouted="false" />
+        <AssociationConnector Association="parking_dbModel.banco_parking_ibfk_1" ManuallyRouted="false" />
+        <AssociationConnector Association="parking_dbModel.banco_parking_ibfk_2" ManuallyRouted="false" />
+        <AssociationConnector Association="parking_dbModel.banco_parking_ibfk_3" ManuallyRouted="false" />
+        <AssociationConnector Association="parking_dbModel.banco_parking_ibfk_4" ManuallyRouted="false" />
+        <AssociationConnector Association="parking_dbModel.banco_parking_ibfk_5" ManuallyRouted="false" />
+        <AssociationConnector Association="parking_dbModel.banco_pension_ibfk_1" ManuallyRouted="false" />
+        <AssociationConnector Association="parking_dbModel.bitacora_pensiones_ibfk_1" ManuallyRouted="false" />
+        <AssociationConnector Association="parking_dbModel.cliente_ibfk_1" ManuallyRouted="false" />
+        <AssociationConnector Association="parking_dbModel.email_ibfk_1" ManuallyRouted="false" />
+        <AssociationConnector Association="parking_dbModel.pensiones_unicas_ibfk_1" ManuallyRouted="false" />
+        <AssociationConnector Association="parking_dbModel.usuario_ibfk_2" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
